@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: world-cup-telegram-webhook
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_WEB_APP_URL
+        sync: false
+      - key: DASHBOARD_DATA_URL
+        value: https://tonybosscr.github.io/world-cup-testing/data/dashboard_data.json
+      - key: TELEGRAM_WEBHOOK_SECRET
+        generateValue: true
